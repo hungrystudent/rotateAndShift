@@ -219,7 +219,7 @@ QVector<float> OBJprocessor::gaussNewtonMethod(const QVector<QVector3D> &meshOne
         locShiftY += stepLength * phaseVec[2];
         phaseVec[0] = locRotation;
         phaseVec[1] = locShiftX;
-        phaseVec[2] = locShiftX;
+        phaseVec[2] = locShiftY;
         if(inpAnimFunctor != nullptr)
             inpAnimFunctor->update(locRotation,locShiftX,locShiftY);
         QThread::msleep(100);
@@ -368,4 +368,3 @@ QVector<float> OBJprocessor::getGradientForOnePoint(const QVector3D &pointOne, c
     //    vector2return.append(dFdY);
     return vector2return;
 }
-

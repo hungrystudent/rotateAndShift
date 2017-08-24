@@ -2,7 +2,7 @@ QT += core gui opengl testlib
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-DEFINES += "DATA_ROOT=\\\"C:/Projects/Gafarov/rotateAndShift/\\\""
+DEFINES += "DATA_ROOT=\\\"C:/Projects/MESH-MERGE/rotateAndShift/\\\""
 
 CONFIG += c++11
 

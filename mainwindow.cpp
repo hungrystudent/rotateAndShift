@@ -148,7 +148,7 @@ void MainWindow::valueChanged(double d)
 void MainWindow::startMerge(bool checked)
 {
     AnimationFunctor *animFunctor = new AnimationFunctor(viewport,geometries,this);
-    ProblemVector problemSetup(0,0,0,0,100,0.1);
+    ProblemVector problemSetup(0,0,0,0,10,1);
     QVector<float> phaseVec;
 
     QVector<QVector3D> meshOne = geometries[0].geom->v;

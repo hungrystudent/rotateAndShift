@@ -33,6 +33,11 @@ public:
         return array2return;
     }
 
+    template<typename T> static QVector<T> getColumnSqrFunc(const QVector3D &pointOne, const QVector3D &pointTwo,
+                                                            const T rotation, const T shiftX, const T shiftY){
+
+    }
+
     static bool read(const QString &objfilename, OBJobject &obj2return);
     static QVector<MyPolygon> triangulate(const QVector<MyPolygon> &inpPolygonArr);
     static QVector<QVector3D> computeNormals(const QVector<MyPolygon> &inputPolygonArr,
