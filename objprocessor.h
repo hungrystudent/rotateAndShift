@@ -15,6 +15,30 @@ public:
 
     OBJprocessor();
 
+    static QVector<float> gaussNewton3D(const QVector<QVector3D> &meshOne, const QVector<QVector3D> &meshTwo,
+                                        QVector<float> inpPhasesVec,
+                                        ProblemVector inpProblemSetup,
+                                        AnimationFunctor *inpAnimFunctor);
+    static QVector<float> gaussNewton3DStep(const QVector<QVector3D> &meshOne, const QVector<QVector3D> &meshTwo,
+                                            const float rotation,
+                                            const float quatX,const float quatY,const float quatZ,
+                                            const float shiftX,const float shiftY,const float shiftZ);
+    template<typename T> static QVector<T> internalSqrFunc3D(const QVector3D &pointOne, const QVector3D &pointTwo,
+                                                             const T rotation,
+                                                             const T quatX, const T quatY, const T quatZ,
+                                                             const T shiftX, const T shiftY, const T shiftZ){
+        QVector<T> array2return;
+        T rotX = (1 - 2*quatY*quatY - 2*quatZ*quatZ)*pointOne.x() +
+                (2*quatX*quatY-2*quatZ*rotation)*pointOne.y() +
+                (2*quatX*quatZ + 2*quatY*rotation)*pointOne.z();
+
+        T rotY = (2*quatX*quatY+2*quatZ*rotation)*pointOne.x() +
+                (1-2*quatX*quatX-2*quatZ*quatZ)*pointOne.y() +
+                (2*quatY*quatZ-2*quatX*rotation)*pointOne.z();
+
+
+    }
+
     static QVector<float> gaussNewtonStep(const QVector<QVector3D> &meshOne,
                                           const QVector<QVector3D> &meshTwo,
                                           QVector<float> inpPhasesVec);

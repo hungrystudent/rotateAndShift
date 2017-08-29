@@ -11,6 +11,9 @@ public:
                   const float inpShiftY, const float inpShiftZ,
                   int inpStepCount,float inpStepLength);
     float getRotation();
+    float getQuaternionI();
+    float getQuaternionJ();
+    float getQuaternionK();
     float getShiftX();
     float getShiftY();
     float getShiftZ();
@@ -24,6 +27,9 @@ public:
     float setStepLength(float value);
 private:
     float rotation   = 0;
+    float quaternionI = 0;
+    float quaternionJ = 0;
+    float quaternionK = 0;
     float shiftX     = 0;
     float shiftY     = 0;
     float shiftZ     = 0;

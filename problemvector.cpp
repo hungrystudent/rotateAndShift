@@ -22,6 +22,19 @@ float ProblemVector::getRotation()
     return rotation;
 }
 
+float ProblemVector::getQuaternionI()
+{
+    return quaternionI;
+}
+float ProblemVector::getQuaternionJ()
+{
+    return quaternionJ;
+}
+float ProblemVector::getQuaternionK()
+{
+    return quaternionK;
+}
+
 float ProblemVector::getShiftX()
 {
     return shiftX;

@@ -20,6 +20,47 @@ OBJprocessor::OBJprocessor()
 
 }
 
+QVector<float> OBJprocessor::gaussNewton3D(const QVector<QVector3D> &meshOne, const QVector<QVector3D> &meshTwo,
+                                           QVector<float> inpPhasesVec,
+                                           ProblemVector inpProblemSetup,
+                                           AnimationFunctor *inpAnimFunctor)
+{
+    QVector<float> phaseVec;
+    float shiftX = inpProblemSetup.getShiftX();
+    float shiftY = inpProblemSetup.getShiftY();
+    float shiftZ = inpProblemSetup.getShiftZ();
+    float rotation = inpProblemSetup.getRotation();
+    float quaternionI = inpProblemSetup.getQuaternionI();
+    float quaternionJ = inpProblemSetup.getQuaternionJ();
+    float quaternionK = inpProblemSetup.getQuaternionK();
+    int stepNum = inpProblemSetup.getStepCount();
+    float stepLength = inpProblemSetup.getStepLength();
+
+    for (int stepCounter = 0; stepCounter < stepNum; stepCounter++){
+        phaseVec = gaussNewton3DStep(meshOne,meshTwo,rotation,
+                                     quaternionI,quaternionJ,quaternionK,
+                                     shiftX,shiftY,shiftZ);
+        rotation += phaseVec[0];
+        quaternionI += phaseVec[1];
+        quaternionJ += phaseVec[2];
+        quaternionK += phaseVec[3];
+        shiftX += phaseVec[4];
+        shiftY += phaseVec[5];
+        shiftZ += phaseVec[6];
+//        if(inpAnimFunctor != nullptr)
+//            inpAnimFunctor->update(locRotation,locShiftX,locShiftY);
+    }
+
+
+}
+
+QVector<float> OBJprocessor::gaussNewton3DStep(const QVector<QVector3D> &meshOne, const QVector<QVector3D> &meshTwo,
+                                               const float rotation, const float quaternionI, const float quaternionJ, const float quaternionK,
+                                               const float shiftX, const float shiftY, const float shiftZ)
+{
+    
+}
+
 OBJobject OBJprocessor::parse(QFile &file2parse)
 {
 
@@ -326,8 +367,6 @@ QVector<float> OBJprocessor::gaussNewtonStep(const QVector<QVector3D> &meshOne, 
     vec2return.append(h(2));
     return vec2return;
 }
-
-
 
 QVector<float> OBJprocessor::getGrad(const QVector<QVector3D> &meshOne, const QVector<QVector3D> &meshTwo, const float rotation, const float shiftX, const float shiftY, const float shitfZ){
     QVector<float> prevPhaseVec;
